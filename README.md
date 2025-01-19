@@ -1,4 +1,3 @@
-# alx-project-0x02-setup
 # Next.js Project Setup and Basics
 
 Welcome to the `alx-project-0x02-setup` repository!  
