@@ -5,7 +5,7 @@ const Header: React.FC = () => {
   return (
     <header className="bg-blue-500 text-white py-4 px-6">
       <nav className="flex space-x-4">
-        <Link href="/">
+        <Link href="/home">
           <a className="hover:underline">Home</a>
         </Link>
         <Link href="/about">
