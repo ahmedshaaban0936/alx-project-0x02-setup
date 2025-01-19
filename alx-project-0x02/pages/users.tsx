@@ -6,12 +6,12 @@ interface UsersPageProps {
   users: UserProps[];
 }
 
-// Using getStaticProps for static data fetching
+// Fetching user data with getStaticProps at build time
 export const getStaticProps = async () => {
   const response = await fetch('https://jsonplaceholder.typicode.com/users');
   const data = await response.json();
 
-  // Mapping data to match UserProps type
+  // Mapping the data to the UserProps type
   const users = data.map((user: any) => ({
     name: user.name,
     email: user.email,
@@ -32,7 +32,7 @@ const UsersPage: React.FC<UsersPageProps> = ({ users }) => {
       <div className="space-y-4">
         {users.map((user) => (
           <UserCard
-            key={user.email} // Assuming email is unique for users
+            key={user.email}  // Using email as the unique key
             name={user.name}
             email={user.email}
             address={user.address}
