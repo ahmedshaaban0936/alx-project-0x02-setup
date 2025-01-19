@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonProps } from '@/interfaces';
+import { type ButtonProps } from '@/interfaces'; // Explicitly using the type keyword for ButtonProps
 
 const Button: React.FC<ButtonProps> = ({ size = 'medium', shape = 'rounded-md', onClick, children }) => {
   const sizeClasses = {
