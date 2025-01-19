@@ -1,17 +1,17 @@
 import React from 'react';
-import UserCard from '@/components/common/UserCard';
 import { UserProps } from '@/interfaces';
+import UserCard from '@/components/common/UserCard';
 
 interface UsersPageProps {
   users: UserProps[];
 }
 
-// Fetching user data with getStaticProps at build time
+// The getStaticProps method must be defined outside the component
 export const getStaticProps = async () => {
   const response = await fetch('https://jsonplaceholder.typicode.com/users');
   const data = await response.json();
 
-  // Mapping the data to the UserProps type
+  // Mapping response data to match the UserProps type
   const users = data.map((user: any) => ({
     name: user.name,
     email: user.email,
@@ -32,7 +32,7 @@ const UsersPage: React.FC<UsersPageProps> = ({ users }) => {
       <div className="space-y-4">
         {users.map((user) => (
           <UserCard
-            key={user.email}  // Using email as the unique key
+            key={user.email} // Using email as the unique key
             name={user.name}
             email={user.email}
             address={user.address}
