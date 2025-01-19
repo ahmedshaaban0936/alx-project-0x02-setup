@@ -1,6 +1,5 @@
 import React from 'react';
-import Card from '../components/common/Card';
-
+import Card from '@/components/common/Card';
 const HomePage: React.FC = () => {
   return (
     <div className="p-6">
