@@ -1,8 +1,18 @@
 import React, { useState } from 'react';
 import Card from '@/components/common/Card';
 import PostModal from '@/components/common/PostModal';
+import Header from '@/components/layout/Header';
 
 const HomePage: React.FC = () => {
+  return (
+    <div>
+      <Header />
+      <div className="p-6 text-center">
+        <h1 className="text-3xl font-bold">Welcome to the Home Page!</h1>
+      </div>
+    </div>
+  );
+
   const [posts, setPosts] = useState<{ title: string; content: string }[]>([]);
   const [isModalOpen, setModalOpen] = useState(false);
 
