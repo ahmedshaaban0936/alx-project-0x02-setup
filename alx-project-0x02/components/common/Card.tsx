@@ -1,17 +1,13 @@
 import React from 'react';
-import Card from '@/components/common/Card';
+import { type CardProps } from '@/interfaces'; // Explicitly importing type CardProps
 
-const HomePage: React.FC = () => {
+const Card: React.FC<CardProps> = ({ title, content }) => {
   return (
-    <div className="p-6">
-      <h1 className="text-3xl font-bold mb-6 text-center">Home Page</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <Card title="Card 1 Title" content="This is the content for Card 1." />
-        <Card title="Card 2 Title" content="This is the content for Card 2." />
-        <Card title="Card 3 Title" content="This is the content for Card 3." />
-      </div>
+    <div className="border rounded-lg shadow-md p-4 mb-4">
+      <h2 className="text-lg font-bold mb-2">{title}</h2>
+      <p className="text-gray-600">{content}</p>
     </div>
   );
 };
 
-export default HomePage;
+export default Card;
