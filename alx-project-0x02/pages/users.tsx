@@ -1,28 +1,38 @@
 import React from 'react';
-import { UserProps } from '@/interfaces';
-import UserCard from '@/components/common/UserCard';
+import { UserProps } from '@/interfaces';   // Import the UserProps type
+import UserCard from '@/components/common/UserCard';   // Import the UserCard component
 
 interface UsersPageProps {
   users: UserProps[];
 }
 
-// The getStaticProps method must be defined outside the component
+// Correctly declare getStaticProps() to fetch data at build time
 export const getStaticProps = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/users');
-  const data = await response.json();
+  try {
+    const response = await fetch('https://jsonplaceholder.typicode.com/users');
+    const data = await response.json();
 
-  // Mapping response data to match the UserProps type
-  const users = data.map((user: any) => ({
-    name: user.name,
-    email: user.email,
-    address: user.address,
-  }));
+    // Map data to the UserProps structure
+    const users = data.map((user: any) => ({
+      name: user.name,
+      email: user.email,
+      address: user.address,
+    }));
 
-  return {
-    props: {
-      users,
-    },
-  };
+    return {
+      props: {
+        users,
+      },
+    };
+  } catch (error) {
+    // Handle error by returning empty array as a fallback
+    console.error('Error fetching users:', error);
+    return {
+      props: {
+        users: [],
+      },
+    };
+  }
 };
 
 const UsersPage: React.FC<UsersPageProps> = ({ users }) => {
@@ -30,14 +40,18 @@ const UsersPage: React.FC<UsersPageProps> = ({ users }) => {
     <div className="p-6">
       <h1 className="text-3xl font-bold mb-6 text-center">Users</h1>
       <div className="space-y-4">
-        {users.map((user) => (
-          <UserCard
-            key={user.email} // Using email as the unique key
-            name={user.name}
-            email={user.email}
-            address={user.address}
-          />
-        ))}
+        {users.length > 0 ? (
+          users.map((user) => (
+            <UserCard
+              key={user.email}  // Use email as the unique key
+              name={user.name}
+              email={user.email}
+              address={user.address}
+            />
+          ))
+        ) : (
+          <p>No users found.</p>
+        )}
       </div>
     </div>
   );
